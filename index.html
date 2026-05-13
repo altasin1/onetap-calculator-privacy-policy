@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - OneTap Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6C63FF;
+            --primary-dark: #5A52D5;
+            --secondary: #FF6584;
+            --bg-light: #F8F9FF;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A2E;
+            --text-secondary: #4A4A6A;
+            --text-muted: #8888A8;
+            --border: #E8E8F0;
+            --gradient-1: linear-gradient(135deg, #6C63FF 0%, #5A52D5 50%, #4A90E2 100%);
+            --shadow: 0 4px 20px rgba(108, 99, 255, 0.12);
+            --shadow-hover: 0 8px 30px rgba(108, 99, 255, 0.2);
+        }
+
+        [data-theme="dark"] {
+            --bg-light: #0F0F1A;
+            --bg-card: #1A1A2E;
+            --text-primary: #E8E8FF;
+            --text-secondary: #B0B0D0;
+            --text-muted: #7070A0;
+            --border: #2A2A4A;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 8px 30px rgba(108, 99, 255, 0.3);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.8;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .header-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 24px 50px;
+            text-align: center;
+        }
+
+        .app-logo {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 36px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: clamp(24px, 5vw, 38px);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        header h1 span {
+            color: #FFD700;
+        }
+
+        .header-subtitle {
+            font-size: 16px;
+            opacity: 0.85;
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        .header-badges {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+        }
+
+        /* ===== DARK MODE TOGGLE ===== */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        /* ===== LAST UPDATED BAR ===== */
+        .last-updated-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .last-updated-bar strong {
+            color: var(--primary);
+        }
+
+        /* ===== MAIN LAYOUT ===== */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* ===== TABLE OF CONTENTS ===== */
+        .toc-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .toc-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 8px;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: var(--bg-light);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border);
+        }
+
+        .toc-item:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .toc-num {
+            width: 22px;
+            height: 22px;
+            background: var(--primary);
+            color: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .toc-item:hover .toc-num {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            transition: box-shadow 0.3s ease;
+            scroll-margin-top: 20px;
+        }
+
+        .section:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .icon-purple { background: linear-gradient(135deg, #6C63FF20, #6C63FF40); }
+        .icon-blue { background: linear-gradient(135deg, #4A90E220, #4A90E240); }
+        .icon-green { background: linear-gradient(135deg, #27AE6020, #27AE6040); }
+        .icon-orange { background: linear-gradient(135deg, #F39C1220, #F39C1240); }
+        .icon-red { background: linear-gradient(135deg, #E74C3C20, #E74C3C40); }
+        .icon-pink { background: linear-gradient(135deg, #FF658420, #FF658440); }
+        .icon-teal { background: linear-gradient(135deg, #1ABC9C20, #1ABC9C40); }
+        .icon-gray { background: linear-gradient(135deg, #95A5A620, #95A5A640); }
+        .icon-yellow { background: linear-gradient(135deg, #F1C40F20, #F1C40F40); }
+        .icon-indigo { background: linear-gradient(135deg, #3498DB20, #3498DB40); }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .section-number {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            font-size: 15px;
+        }
+
+        .section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== HIGHLIGHT BOXES ===== */
+        .highlight-box {
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin: 16px 0;
+            border-left: 4px solid;
+            font-size: 14px;
+        }
+
+        .highlight-info {
+            background: rgba(74, 144, 226, 0.08);
+            border-color: #4A90E2;
+            color: var(--text-secondary);
+        }
+
+        .highlight-success {
+            background: rgba(39, 174, 96, 0.08);
+            border-color: #27AE60;
+            color: var(--text-secondary);
+        }
+
+        .highlight-warning {
+            background: rgba(243, 156, 18, 0.08);
+            border-color: #F39C12;
+            color: var(--text-secondary);
+        }
+
+        .highlight-danger {
+            background: rgba(231, 76, 60, 0.08);
+            border-color: #E74C3C;
+            color: var(--text-secondary);
+        }
+
+        .highlight-box strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .highlight-info strong { color: #4A90E2; }
+        .highlight-success strong { color: #27AE60; }
+        .highlight-warning strong { color: #F39C12; }
+        .highlight-danger strong { color: #E74C3C; }
+
+        /* ===== LISTS ===== */
+        .policy-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+
+        .policy-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            color: var(--text-secondary);
+            font-size: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .policy-list li:last-child {
+            border-bottom: none;
+        }
+
+        .list-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+
+        .list-check {
+            color: #27AE60;
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .list-cross {
+            color: #E74C3C;
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ===== DATA TABLE ===== */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .data-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: var(--bg-light);
+        }
+
+        /* ===== API SECTION ===== */
+        .api-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .api-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.1);
+        }
+
+        .api-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .api-info h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .api-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .api-tag {
+            margin-left: auto;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .tag-optional {
+            background: rgba(108, 99, 255, 0.1);
+            color: var(--primary);
+        }
+
+        .tag-required {
+            background: rgba(231, 76, 60, 0.1);
+            color: #E74C3C;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .contact-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .contact-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-card .contact-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .contact-card h4 {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .contact-card p {
+            font-size: 12px;
+            color: var(--text-muted);
+            word-break: break-all;
+            margin: 0;
+        }
+
+        /* ===== GDPR TAG ===== */
+        .compliance-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .compliance-badge {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            border: 2px solid;
+        }
+
+        .badge-gdpr { color: #3498DB; border-color: #3498DB; background: rgba(52,152,219,0.08); }
+        .badge-coppa { color: #27AE60; border-color: #27AE60; background: rgba(39,174,96,0.08); }
+        .badge-ccpa { color: #9B59B6; border-color: #9B59B6; background: rgba(155,89,182,0.08); }
+        .badge-admob { color: #F39C12; border-color: #F39C12; background: rgba(243,156,18,0.08); }
+        .badge-playstore { color: #E74C3C; border-color: #E74C3C; background: rgba(231,76,60,0.08); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .footer-logo span {
+            color: var(--secondary);
+        }
+
+        .footer-tagline {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        .footer-copy {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 20px;
+            width: 46px;
+            height: 46px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(108, 99, 255, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(108, 99, 255, 0.5);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .section {
+                padding: 20px 16px;
+            }
+
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .data-table {
+                font-size: 12px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 8px 10px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .theme-toggle {
+                top: 12px;
+                right: 12px;
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+
+        /* ===== PRINT ===== */
+        @media print {
+            .theme-toggle,
+            .back-to-top {
+                display: none;
+            }
+
+            .section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        🌙 <span id="themeLabel">Dark Mode</span>
+    </button>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top">↑</button>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-inner">
+            <div class="app-logo">🧮</div>
+            <h1>OneTap <span>Calculator</span></h1>
+            <p class="header-subtitle">Privacy Policy — Your data, your control. We keep it simple and transparent.</p>
+            <div class="header-badges">
+                <span class="badge">📱 Android &amp; iOS</span>
+                <span class="badge">🌍 GDPR Compliant</span>
+                <span class="badge">🔒 Privacy First</span>
+                <span class="badge">📢 AdMob Enabled</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Last Updated Bar -->
+    <div class="last-updated-bar">
+        📅 <strong>Effective Date:</strong> June 14, 2025 &nbsp;|&nbsp;
+        🔄 <strong>Last Updated:</strong> June 14, 2025 &nbsp;|&nbsp;
+        🌐 <strong>Version:</strong> 1.0.0
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="container">
+
+        <!-- Table of Contents -->
+        <div class="toc-card">
+            <div class="toc-title">📋 Table of Contents</div>
+            <div class="toc-grid">
+                <a href="#overview" class="toc-item"><span class="toc-num">1</span> Overview</a>
+                <a href="#data-collection" class="toc-item"><span class="toc-num">2</span> Data We Collect</a>
+                <a href="#admob" class="toc-item"><span class="toc-num">3</span> Advertising (AdMob)</a>
+                <a href="#api" class="toc-item"><span class="toc-num">4</span> Third-Party APIs</a>
+                <a href="#local-storage" class="toc-item"><span class="toc-num">5</span> Local Storage</a>
+                <a href="#permissions" class="toc-item"><span class="toc-num">6</span> App Permissions</a>
+                <a href="#children" class="toc-item"><span class="toc-num">7</span> Children's Privacy</a>
+                <a href="#user-rights" class="toc-item"><span class="toc-num">8</span> Your Rights</a>
+                <a href="#security" class="toc-item"><span class="toc-num">9</span> Data Security</a>
+                <a href="#compliance" class="toc-item"><span class="toc-num">10</span> Compliance</a>
+                <a href="#changes" class="toc-item"><span class="toc-num">11</span> Policy Changes</a>
+                <a href="#contact" class="toc-item"><span class="toc-num">12</span> Contact Us</a>
+            </div>
+        </div>
+
+        <!-- ===== SECTION 1: Overview ===== -->
+        <div class="section" id="overview">
+            <div class="section-header">
+                <div class="section-icon icon-purple">🛡️</div>
+                <div>
+                    <div class="section-number">Section 01</div>
+                    <h2 class="section-title">Overview &amp; Introduction</h2>
+                </div>
+            </div>
+            <p>
+                Welcome to <strong>OneTap Calculator</strong> — an all-in-one calculator app developed for Android and iOS platforms. This Privacy Policy explains how we collect, use, and protect information when you use our app.
+            </p>
+            <p>
+                OneTap Calculator offers 7 powerful modules: <strong>Basic &amp; Scientific, Converter, Physics, Time &amp; Date, Math &amp; Geometry, Finance,</strong> and <strong>Personal / Daily Life</strong> calculators — all in one seamless experience.
+            </p>
+
+            <div class="highlight-box highlight-success">
+                <strong>✅ Our Core Commitment</strong>
+                OneTap Calculator is designed with a <strong>Privacy-First</strong> approach. The vast majority of our app's features work completely <strong>offline</strong> without collecting any personal data. We only collect minimal, anonymized data required for app functionality and advertising.
+            </div>
+
+            <div class="highlight-box highlight-info">
+                <strong>ℹ️ Developer Information</strong>
+                This app is independently developed. By installing and using OneTap Calculator, you agree to the terms outlined in this Privacy Policy. If you do not agree, please uninstall the app and discontinue use.
+            </div>
+        </div>
+
+        <!-- ===== SECTION 2: Data Collection ===== -->
+        <div class="section" id="data-collection">
+            <div class="section-header">
+                <div class="section-icon icon-blue">📊</div>
+                <div>
+                    <div class="section-number">Section 02</div>
+                    <h2 class="section-title">Data We Collect</h2>
+                </div>
+            </div>
+            <p>We follow the principle of <strong>data minimization</strong> — we only collect what is strictly necessary.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Collected?</th>
+                        <th>Purpose</th>
+                        <th>Stored Where?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Calculation History</td>
+                        <td>✅ Yes</td>
+                        <td>User convenience (view past results)</td>
+                        <td>Local device only</td>
+                    </tr>
+                    <tr>
+                        <td>User Settings &amp; Theme</td>
+                        <td>✅ Yes</td>
+                        <td>App personalization</td>
+                        <td>Local device only</td>
+                    </tr>
+                    <tr>
+                        <td>API Keys (Currency)</td>
+                        <td>✅ Yes</td>
+                        <td>Real-time currency conversion</td>
+                        <td>Local device only</td>
+                    </tr>
+                    <tr>
+                        <td>Habit / Daily Life Data</td>
+                        <td>✅ Yes</td>
+                        <td>Personal tracking features</td>
+                        <td>Local device only</td>
+                    </tr>
+                    <tr>
+                        <td>Finance Calculations</td>
+                        <td>✅ Yes</td>
+                        <td>Loan, investment planning</td>
+                        <td>Local device only</td>
+                    </tr>
+                    <tr>
+                        <td>Device Advertising ID</td>
+                        <td>✅ Yes</td>
+                        <td>AdMob personalized ads</td>
+                        <td>Google's servers</td>
+                    </tr>
+                    <tr>
+                        <td>Name or Email Address</td>
+                        <td>❌ No</td>
+                        <td>N/A — not collected</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>Location Data</td>
+                        <td>❌ No</td>
+                        <td>N/A — not collected</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>Camera / Microphone</td>
+                        <td>❌ No</td>
+                        <td>N/A — not collected</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>Contacts / SMS</td>
+                        <td>❌ No</td>
+                        <td>N/A — not collected</td>
+                        <td>N/A</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box highlight-warning">
+                <strong>⚠️ Important Note</strong>
+                All data stored locally on your device (calculation history, settings, API keys) is <strong>never transmitted to our servers</strong>. We do not have a backend server that stores your personal information.
+            </div>
+        </div>
+
+        <!-- ===== SECTION 3: AdMob ===== -->
+        <div class="section" id="admob">
+            <div class="section-header">
+                <div class="section-icon icon-orange">📢</div>
+                <div>
+                    <div class="section-number">Section 03</div>
+                    <h2 class="section-title">Advertising — Google AdMob</h2>
+                </div>
+            </div>
+            <p>
+                OneTap Calculator is a <strong>free app</strong> supported by advertising. We use <strong>Google AdMob</strong> to display ads. This section explains how AdMob works and what data it may collect.
+            </p>
+
+            <div class="highlight-box highlight-info">
+                <strong>📋 Types of Ads in OneTap Calculator</strong>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Ad Type</th>
+                        <th>Placement</th>
+                        <th>Frequency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🖼️ Banner Ads</td>
+                        <td>Bottom of each calculator screen (above navigation)</td>
+                        <td>Always visible — non-intrusive</td>
+                    </tr>
+                    <tr>
+                        <td>📱 Interstitial Ads</td>
+                        <td>Between major screen transitions</td>
+                        <td>Every 3–4 navigations (not every time)</td>
+                    </tr>
+                    <tr>
+                        <td>🎥 Rewarded Ads</td>
+                        <td>Optional — to unlock features (e.g., CSV export, themes)</td>
+                        <td>User-initiated only</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Google AdMob may collect the following information for ad personalization:</p>
+
+            <ul class="policy-list">
+                <li><span class="list-dot"></span><strong>Advertising ID (IDFA/GAID):</strong> A resettable device identifier used to serve relevant ads.</li>
+                <li><span class="list-dot"></span><strong>IP Address:</strong> Used for general location-based ad targeting (country/region level).</li>
+                <li><span class="list-dot"></span><strong>App Usage Data:</strong> How you interact with ads (clicks, views) — fully anonymized.</li>
+                <li><span class="list-dot"></span><strong>Device Information:</strong> Device type, OS version — used for ad compatibility.</li>
+            </ul>
+
+            <div class="highlight-box highlight-success">
+                <strong>✅ Opt-Out of Personalized Ads</strong>
+                You can opt out of personalized advertising at any time:
+                <br><br>
+                📱 <strong>Android:</strong> Settings → Google → Ads → "Opt out of Ads Personalization"
+                <br>
+                🍎 <strong>iOS:</strong> Settings → Privacy → Tracking → Disable tracking for OneTap Calculator
+                <br><br>
+                You will still see ads, but they will not be personalized based on your interests.
+            </div>
+
+            <p>
+                Google AdMob's data practices are governed by <strong>Google's Privacy Policy</strong>:
+                <br>
+                🔗 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color: var(--primary);">https://policies.google.com/privacy</a>
+            </p>
+        </div>
+
+        <!-- ===== SECTION 4: Third-Party APIs ===== -->
+        <div class="section" id="api">
+            <div class="section-header">
+                <div class="section-icon icon-teal">🌐</div>
+                <div>
+                    <div class="section-number">Section 04</div>
+                    <h2 class="section-title">Third-Party APIs — Currency Conversion</h2>
+                </div>
+            </div>
+            <p>
+                The <strong>Converter Screen</strong> in OneTap Calculator supports real-time currency conversion. To protect your privacy and reduce costs, we use a <strong>user-controlled API key system</strong>.
+            </p>
+
+            <div class="highlight-box highlight-info">
+                <strong>ℹ️ How Our API System Works</strong>
+                You choose which currency API to use. Your API key is stored only on your device and is sent directly from your device to the API provider. We never see, store, or transmit your API key to our servers.
+            </div>
+
+            <p>The following third-party currency APIs are supported. Each has its own privacy policy:</p>
+
+            <div class="api-card">
+                <div class="api-icon">💱</div>
+                <div class="api-info">
+                    <h4>Frankfurter API</h4>
+                    <p>frankfurter.dev — Free, no API key required. Open-source ECB data.</p>
+                </div>
+                <span class="api-tag tag-optional">Default / Free</span>
+            </div>
+
+            <div class="api-card">
+                <div class="api-icon">🔄</div>
+                <div class="api-info">
+                    <h4>ExchangeRate Host</h4>
+                    <p>exchangerate.host — Free tier available with API key registration.</p>
+                </div>
+                <span class="api-tag tag-optional">Optional</span>
+            </div>
+
+            <div class="api-card">
+                <div class="api-icon">💰</div>
+                <div class="api-info">
+                    <h4>CurrencyFreaks</h4>
+                    <p>currencyfreaks.com — Free tier with API key. 1,500 requests/month free.</p>
+                </div>
+                <span class="api-tag tag-optional">Optional</span>
+            </div>
+
+            <div class="api-card">
+                <div class="api-icon">🐙</div>
+                <div class="api-info">
+                    <h4>fawazahmed0/exchange-api (GitHub)</h4>
+                    <p>github.com/fawazahmed0/exchange-api — Completely free, no key needed.</p>
+                </div>
+                <span class="api-tag tag-optional">Free / No Key</span>
+            </div>
+
+            <div class="api-card">
+                <div class="api-icon">📈</div>
+                <div class="api-info">
+                    <h4>Open Exchange Rates</h4>
+                    <p>openexchangerates.org — Free "Forever Free" plan available.</p>
+                </div>
+                <span class="api-tag tag-optional">Optional</span>
+            </div>
+
+            <div class="api-card">
+                <div class="api-icon">🔑</div>
+                <div class="api-info">
+                    <h4>Fixer API</h4>
+                    <p>fixer.io — Free plan available with API key. 100 requests/month free.</p>
+                </div>
+                <span class="api-tag tag-optional">Optional</span>
+            </div>
+
+            <div class="api-card">
+                <div class="api-icon">💹</div>
+                <div class="api-info">
+                    <h4>ExchangeRatesAPI</h4>
+                    <p>exchangeratesapi.io — European Central Bank data source.</p>
+                </div>
+                <span class="api-tag tag-optional">Optional</span>
+            </div>
+
+            <div class="highlight-box highlight-warning">
+                <strong>⚠️ Third-Party API Privacy</strong>
+                When you use a currency API, your device's IP address is sent to that API provider as part of the HTTP request. This is standard internet behavior. Please review each API provider's own privacy policy before use. We are not responsible for data practices of third-party API providers.
+            </div>
+        </div>
+
+        <!-- ===== SECTION 5: Local Storage ===== -->
+        <div class="section" id="local-storage">
+            <div class="section-header">
+                <div class="section-icon icon-green">💾</div>
+                <div>
+                    <div class="section-number">Section 05</div>
+                    <h2 class="section-title">Local Storage &amp; Data Handling</h2>
+                </div>
+            </div>
+            <p>
+                OneTap Calculator uses <strong>local device storage</strong> (Hive/Isar database) to save your preferences and data. This data <strong>never leaves your device</strong> unless you explicitly export it.
+            </p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>What's Stored Locally</th>
+                        <th>Can You Delete It?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🧮 Basic &amp; Scientific</td>
+                        <td>Calculation history, display mode preference</td>
+                        <td>✅ Yes — Clear History button</td>
+                    </tr>
+                    <tr>
+                        <td>🔄 Converter</td>
+                        <td>Last selected units, API keys, favorite pairs</td>
+                        <td>✅ Yes — Settings → Reset</td>
+                    </tr>
+                    <tr>
+                        <td>⚡ Physics</td>
+                        <td>Recent formula inputs, saved results</td>
+                        <td>✅ Yes — Clear History</td>
+                    </tr>
+                    <tr>
+                        <td>🕐 Time &amp; Date</td>
+                        <td>Favorite time zones, saved countdowns</td>
+                        <td>✅ Yes — Manage Favorites</td>
+                    </tr>
+                    <tr>
+                        <td>📐 Math &amp; Geometry</td>
+                        <td>Calculation history, saved diagrams</td>
+                        <td>✅ Yes — Clear History</td>
+                    </tr>
+                    <tr>
+                        <td>💰 Finance</td>
+                        <td>Loan data, investment calculations, CSV exports</td>
+                        <td>✅ Yes — Delete Data option</td>
+                    </tr>
+                    <tr>
+                        <td>🌟 Personal / Daily Life</td>
+                        <td>BMI records, habit tracker, shopping lists</td>
+                        <td>✅ Yes — Clear All Data</td>
+                    </tr>
+                    <tr>
+                        <td>🎨 App Settings</td>
+                        <td>Theme (dark/light), color scheme, language</td>
+                        <td>✅ Yes — Reset to Defaults</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box highlight-success">
+                <strong>✅ Finance CSV Export</strong>
+                When you export Finance data as a CSV file, the file is saved to your device's local storage (Downloads folder). This file is under your complete control. We do not receive or have access to this exported file.
+            </div>
+        </div>
+
+        <!-- ===== SECTION 6: Permissions ===== -->
+        <div class="section" id="permissions">
+            <div class="section-header">
+                <div class="section-icon icon-yellow">🔐</div>
+                <div>
+                    <div class="section-number">Section 06</div>
+                    <h2 class="section-title">App Permissions Explained</h2>
+                </div>
+            </div>
+            <p>OneTap Calculator requests only the minimum permissions necessary for its features to function properly.</p>
+
+            <ul class="policy-list">
+                <li>
+                    <span class="list-check">✅</span>
+                    <div>
+                        <strong>INTERNET</strong><br>
+                        <span style="font-size: 14px; color: var(--text-muted);">Required for: Real-time currency conversion (API calls) and loading AdMob advertisements. Not used for any other purpose.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="list-check">✅</span>
+                    <div>
+                        <strong>NETWORK_STATE / ACCESS_NETWORK_STATE</strong><br>
+                        <span style="font-size: 14px; color: var(--text-muted);">Required for: Detecting online/offline status to show appropriate messages when currency API is unavailable.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="list-check">✅</span>
+                    <div>
+                        <strong>WRITE_EXTERNAL_STORAGE (Android &lt; 10)</strong><br>
+                        <span style="font-size: 14px; color: var(--text-muted);">Required for: Saving exported CSV files from the Finance calculator to your Downloads folder.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="list-check">✅</span>
+                    <div>
+                        <strong>VIBRATE (Optional)</strong><br>
+                        <span style="font-size: 14px; color: var(--text-muted);">Required for: Haptic feedback when tapping calculator buttons (can be disabled in Settings).</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="list-cross">❌</span>
+                    <div>
+                        <strong>CAMERA — NOT REQUESTED</strong><br>
+                        <span style="font-size: 14px; color: var(--text-muted);">OneTap Calculator never requests camera access.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="list-cross">❌</span>
+                    <div>
+                        <strong>LOCATION — NOT REQUESTED</strong><br>
+                        <span style="font-size: 14px; color: var(--text-muted);">OneTap Calculator never requests location access.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="list-cross">❌</span>
+                    <div>
+                        <strong>CONTACTS / PHONE — NOT REQUESTED</strong><br>
+                        <span style="font-size: 14px; color: var(--text-muted);">OneTap Calculator never accesses your contacts or phone.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="list-cross">❌</span>
+                    <div>
+                        <strong>MICROPHONE — NOT REQUESTED</strong><br>
+                        <span style="font-size: 14px; color: var(--text-muted);">OneTap Calculator never uses your microphone.</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ===== SECTION 7: Children's Privacy ===== -->
+        <div class="section" id="children">
+            <div class="section-header">
+                <div class="section-icon icon-pink">👧</div>
+                <div>
+                    <div class="section-number">Section 07</div>
+                    <h2 class="section-title">Children's Privacy (COPPA)</h2>
+                </div>
+            </div>
+
+            <div class="highlight-box highlight-warning">
+                <strong>⚠️ Age Requirement</strong>
+                OneTap Calculator is intended for users aged <strong>13 years and older</strong>. If you are under 13, please have a parent or guardian review this policy and supervise your use of the app.
+            </div>
+
+            <p>
+                We comply with the <strong>Children's Online Privacy Protection Act (COPPA)</strong>. We do not knowingly collect personal information from children under 13 years of age.
+            </p>
+            <p>
+                Since OneTap Calculator uses Google AdMob, we have configured ad serving in compliance with Google's <strong>Families Policy</strong>. Ads displayed are appropriate for general audiences.
+            </p>
+            <p>
+                If you are a parent or guardian and believe your child (under 13) has used this app and provided personal information, please contact us immediately at the email address in Section 12 so we can take appropriate action.
+            </p>
+
+            <ul class="policy-list">
+                <li><span class="list-check">✅</span> We do not collect personal data from children under 13.</li>
+                <li><span class="list-check">✅</span> AdMob ads are configured for family-friendly content.</li>
+                <li><span class="list-check">✅</span> No registration or account creation is required to use the app.</li>
+                <li><span class="list-check">✅</span> No social features, messaging, or user-generated content sharing.</li>
+            </ul>
+        </div>
+
+        <!-- ===== SECTION 8: User Rights ===== -->
+        <div class="section" id="user-rights">
+            <div class="section-header">
+                <div class="section-icon icon-indigo">⚖️</div>
+                <div>
+                    <div class="section-number">Section 08</div>
+                    <h2 class="section-title">Your Rights &amp; Control</h2>
+                </div>
+            </div>
+            <p>
+                We respect your rights under international privacy laws including <strong>GDPR</strong> (EU), <strong>CCPA</strong> (California), and other applicable regulations.
+            </p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Your Right</th>
+                        <th>What It Means</th>
+                        <th>How to Exercise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🔍 Right to Access</td>
+                        <td>Know what data is stored about you</td>
+                        <td>All data is on your device — visible in Settings</td>
+                    </tr>
+                    <tr>
+                        <td>🗑️ Right to Delete</td>
+                        <td>Delete all locally stored data</td>
+                        <td>Settings → Clear All Data / Uninstall app</td>
+                    </tr>
+                    <tr>
+                        <td>✏️ Right to Correct</td>
+                        <td>Correct inaccurate personal data</td>
+                        <td>Edit directly within the app</td>
+                    </tr>
+                    <tr>
+                        <td>📤 Right to Portability</td>
+                        <td>Export your data</td>
+                        <td>Finance → Export CSV (your data, your file)</td>
+                    </tr>
+                    <tr>
+                        <td>🚫 Right to Object (Ads)</td>
+                        <td>Opt out of personalized advertising</td>
+                        <td>Device Settings → Ads → Opt out</td>
+                    </tr>
+                    <tr>
+                        <td>🔕 Right to Restriction</td>
+                        <td>Limit data processing</td>
+                        <td>Use app in offline mode — no data leaves device</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box highlight-info">
+                <strong>ℹ️ Data Deletion Is Easy</strong>
+                Since all your data is stored locally on your device, the simplest way to delete all data is to <strong>uninstall OneTap Calculator</strong> from your device. This will permanently remove all locally stored data.
+            </div>
+        </div>
+
+        <!-- ===== SECTION 9: Security ===== -->
+        <div class="section" id="security">
+            <div class="section-header">
+                <div class="section-icon icon-red">🔒</div>
+                <div>
+                    <div class="section-number">Section 09</div>
+                    <h2 class="section-title">Data Security</h2>
+                </div>
+            </div>
+            <p>
+                Protecting your data is our top priority. Here are the security measures implemented in OneTap Calculator:
+            </p>
+
+            <ul class="policy-list">
+                <li>
+                    <span class="list-check">✅</span>
+                    <div>
+                        <strong>Local-Only Storage:</strong> All calculation data, history, and settings are stored only on your device using encrypted local databases (Hive/Isar). No data is transmitted to external servers.
+                    </div>
+                </li>
+                <li>
+                    <span class="list-check">✅</span>
+                    <div>
+                        <strong>API Key Protection:</strong> Your currency API keys are stored in the device's secure local storage and are never logged, shared, or transmitted anywhere except to the API provider you choose.
+                    </div>
+                </li>
+                <li>
+                    <span class="list-check">✅</span>
+                    <div>
+                        <strong>HTTPS Only:</strong> All network requests (currency API calls and AdMob) use <strong>HTTPS</strong> encrypted connections — your data is protected in transit.
+                    </div>
+                </li>
+                <li>
+                    <span class="list-check">✅</span>
+                    <div>
+                        <strong>No Backend Server:</strong> OneTap Calculator has no backend server. There is no central database that stores your information — eliminating the risk of server-side data breaches.
+                    </div>
+                </li>
+                <li>
+                    <span class="list-check">✅</span>
+                    <div>
+                        <strong>Regular Updates:</strong> We regularly update the app to patch security vulnerabilities and maintain compatibility with the latest OS security standards.
+                    </div>
+                </li>
+            </ul>
+
+            <div class="highlight-box highlight-warning">
+                <strong>⚠️ Device Security Reminder</strong>
+                While we implement strong in-app security, the overall security of your data also depends on your device's security. We recommend enabling screen lock, keeping your device OS updated, and avoiding installing apps from untrusted sources.
+            </div>
+        </div>
+
+        <!-- ===== SECTION 10: Compliance ===== -->
+        <div class="section" id="compliance">
+            <div class="section-header">
+                <div class="section-icon icon-gray">📜</div>
+                <div>
+                    <div class="section-number">Section 10</div>
+                    <h2 class="section-title">Legal Compliance &amp; Standards</h2>
+                </div>
+            </div>
+            <p>OneTap Calculator is designed to comply with the following privacy laws and platform policies:</p>
+
+            <div class="compliance-badges">
+                <span class="compliance-badge badge-gdpr">🇪🇺 GDPR Compliant</span>
+                <span class="compliance-badge badge-coppa">👧 COPPA Compliant</span>
+                <span class="compliance-badge badge-ccpa">🇺🇸 CCPA Compliant</span>
+                <span class="compliance-badge badge-admob">📢 AdMob Policies</span>
+                <span class="compliance-badge badge-playstore">📱 Google Play &amp; App Store Guidelines</span>
+            </div>
+
+            <br>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Regulation / Policy</th>
+                        <th>Region</th>
+                        <th>Our Compliance Approach</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GDPR</td>
+                        <td>European Union</td>
+                        <td>Minimal data collection, user rights honored, no profiling</td>
+                    </tr>
+                    <tr>
+                        <td>CCPA</td>
+                        <td>California, USA</td>
+                        <td>Right to know, delete, and opt-out of data sale (we don't sell data)</td>
+                    </tr>
+                    <tr>
+                        <td>COPPA</td>
+                        <td>USA (under 13)</td>
+                        <td>No data collection from children, family-safe ads</td>
+                    </tr>
+                    <tr>
+                        <td>Google Play Policy</td>
+                        <td>Android</td>
+                        <td>Full compliance with Google Play Developer Policy</td>
+                    </tr>
+                    <tr>
+                        <td>Apple App Store Policy</td>
+                        <td>iOS</td>
+                        <td>Complies with Apple's App Store Review Guidelines</td>
+                    </tr>
+                    <tr>
+                        <td>Google AdMob Policies</td>
+                        <td>Global</td>
+                        <td>Implemented consent framework for EU users (GDPR)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box highlight-info">
+                <strong>ℹ️ EU Users — Consent Management</strong>
+                For users in the European Economic Area (EEA) and UK, OneTap Calculator will display a <strong>consent dialog</strong> on first launch (powered by Google's User Messaging Platform) to obtain your consent for personalized advertising as required by GDPR.
+            </div>
+        </div>
+
+        <!-- ===== SECTION 11: Policy Changes ===== -->
+        <div class="section" id="changes">
+            <div class="section-header">
+                <div class="section-icon icon-purple">🔄</div>
+                <div>
+                    <div class="section-number">Section 11</div>
+                    <h2 class="section-title">Changes to This Privacy Policy</h2>
+                </div>
+            </div>
+            <p>
+                We may update this Privacy Policy from time to time to reflect changes in our app features, legal requirements, or best practices. We are committed to transparent communication about any changes.
+            </p>
+
+            <ul class="policy-list">
+                <li><span class="list-dot"></span>When we make significant changes, we will update the <strong>"Last Updated"</strong> date at the top of this page.</li>
+                <li><span class="list-dot"></span>For major changes, we will display an <strong>in-app notification</strong> prompting you to review the updated policy.</li>
+                <li><span class="list-dot"></span>Minor corrections (grammar, clarity) will not trigger notifications but the date will be updated.</li>
+                <li><span class="list-dot"></span>Continuing to use OneTap Calculator after policy updates constitutes your acceptance of the revised policy.</li>
+                <li><span class="list-dot"></span>If you disagree with any changes, you may discontinue using the app and uninstall it at any time.</li>
+            </ul>
+
+            <div class="highlight-box highlight-info">
+                <strong>📌 Policy Version History</strong>
+                <br>
+                Version 1.0.0 — June 14, 2025 — Initial Privacy Policy (App Launch)
+            </div>
+        </div>
+
+        <!-- ===== SECTION 12: Contact ===== -->
+        <div class="section" id="contact">
+            <div class="section-header">
+                <div class="section-icon icon-teal">📬</div>
+                <div>
+                    <div class="section-number">Section 12</div>
+                    <h2 class="section-title">Contact Us</h2>
+                </div>
+            </div>
+            <p>
+                We are committed to resolving any privacy concerns you may have. If you have questions about this Privacy Policy, your data, or any aspect of OneTap Calculator, please reach out to us.
+            </p>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h4>Email Support</h4>
+                    <p>privacy@onetapcalculator.app</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">🌐</div>
+                    <h4>Website</h4>
+                    <p>onetapcalculator.app</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h4>In-App Support</h4>
+                    <p>Settings → Help &amp; Feedback</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">⏱️</div>
+                    <h4>Response Time</h4>
+                    <p>Within 48–72 business hours</p>
+                </div>
+            </div>
+
+            <div class="highlight-box highlight-success">
+                <strong>✅ We're Here to Help</strong>
+                For privacy-related requests (data deletion, access requests, or concerns about data handling), please email us with the subject line: <strong>"Privacy Request — OneTap Calculator"</strong>. We will respond within 72 hours and resolve your concern within 30 days as required by applicable law.
+            </div>
+        </div>
+
+    </div><!-- End Container -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">OneTap <span>Calculator</span></div>
+            <p class="footer-tagline">All-in-One Smart Calculator — Physics, Finance, Math, Converter &amp; More</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+                <a href="#">App Support</a>
+            </div>
+            <p class="footer-copy">
+                © 2025 OneTap Calculator. All rights reserved.<br>
+                This app is independently developed and not affiliated with Google, Apple, or any third-party API provider mentioned herein.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== DARK MODE TOGGLE =====
+        function toggleTheme() {
+            const body = document.body;
+            const label = document.getElementById('themeLabel');
+            const toggle = document.getElementById('themeToggle');
+
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                label.textContent = 'Dark Mode';
+                toggle.innerHTML = '🌙 <span id="themeLabel">Dark Mode</span>';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                toggle.innerHTML = '☀️ <span id="themeLabel">Light Mode</span>';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const toggle = document.getElementById('themeToggle');
+
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                toggle.innerHTML = '☀️ <span id="themeLabel">Light Mode</span>';
+            }
+        });
+
+        // ===== BACK TO TOP =====
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ===== SMOOTH SCROLL FIX FOR TOC =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ===== SECTION ENTRY ANIMATION =====
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
